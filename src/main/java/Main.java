@@ -6,6 +6,31 @@ import java.util.*;
 public class Main {
     public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     public static StringBuilder sb;
+    public static String getHint(List<Integer> correctNumber, List<Integer> userNumber){
+        int strike = 0;
+        int ball = 0;
+
+        for (int i = 0; i < 3; i++) {
+            if (correctNumber.get(i).equals(userNumber.get(i))) {
+                strike++;
+                continue;
+            }
+            if (correctNumber.contains(userNumber.get(i))) {
+                ball++;
+            }
+        }
+
+        if (strike == 0 && ball == 0) {
+            return "낫싱";
+        }
+
+        String result = "";
+        if (strike > 0) result += strike + "스트라이크 ";
+        if (ball > 0) result += ball + "볼";
+
+        return result.trim();
+    }
+
     public static boolean checkRestart() throws IOException{
         System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
         String str = br.readLine();

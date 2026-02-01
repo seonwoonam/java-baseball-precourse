@@ -17,5 +17,15 @@ public class Main {
         }
         return true;
     }
+    public static List<Integer> getRandomNumbers(){
+        Random random = new Random();
+        List<Integer> computer = new ArrayList<>();
+        while (computer.size() < 3) {
+            int randomNumber = random.nextInt(9) + 1;
+            if (!computer.contains(randomNumber)) {
+                computer.add(randomNumber);
+            }
+        }
+        return computer;
     }
 }

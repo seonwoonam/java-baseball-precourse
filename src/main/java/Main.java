@@ -6,6 +6,34 @@ import java.util.*;
 public class Main {
     public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     public static StringBuilder sb;
+    public static void main(String[] args) throws IOException {
+        boolean isRunning = true;
+        List<Integer> computerList = getRandomNumbers();
+        while (isRunning) {
+            boolean isCorrect = run(computerList);
+            if(isCorrect){
+                System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 끝");
+                isRunning = checkRestart();
+            }
+            if(isCorrect && isRunning){
+                computerList = getRandomNumbers();
+            }
+        }
+    }
+
+    public static boolean run(List<Integer> correctNumber) throws IOException{
+        List<Integer> inputNumberList = inputNumber();
+        int strike = 0;
+        for (int i = 0; i < 3; i++) {
+            if (correctNumber.get(i).equals(inputNumberList.get(i))) strike++;
+        }
+        System.out.println(getHint(correctNumber, inputNumberList));
+        if(strike == 3){
+            return true;
+        }
+        return false;
+    }
+
     public static String getHint(List<Integer> correctNumber, List<Integer> userNumber){
         int strike = 0;
         int ball = 0;

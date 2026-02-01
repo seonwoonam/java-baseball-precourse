@@ -17,6 +17,17 @@ public class Main {
         }
         return true;
     }
+
+    public static List<Integer> inputNumber() throws IOException {
+        System.out.print("숫자를 입력해주세요 : ");
+        String str = br.readLine();
+        List<Integer> numbers = new ArrayList<>();
+        for(char c : str.toCharArray()){
+            numbers.add(c-'0');
+        }
+        return numbers;
+    }
+
     public static List<Integer> getRandomNumbers(){
         Random random = new Random();
         List<Integer> computer = new ArrayList<>();

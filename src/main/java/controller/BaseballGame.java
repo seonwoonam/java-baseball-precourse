@@ -20,6 +20,14 @@ public class BaseballGame {
         this.computer = new Computer();
     }
 
+    public void run() {
+        boolean isRunning = true;
+        while (isRunning) {
+            playRound();
+            isRunning = checkRestart();
+        }
+    }
+
     private void playRound() {
         Numbers target = computer.generate();
         boolean isCorrect = false;
@@ -60,6 +68,16 @@ public class BaseballGame {
         return new GameResult(strike, ball);
     }
 
+    private boolean checkRestart() {
+        while (true) {
+            String input = inputView.askRestart();
+            if (input.equals("1")) {
+                return true;
+            }
+            if (input.equals("2")) {
+                return false;
+            }
+            outputView.printError("[ERROR] 1 또는 2만 입력 가능합니다.");
         }
     }
 }
